@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Input-Typen Beispiele</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .input-group {
+        margin: 10px 0;
+      }
+      label {
+        display: inline-block;
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HTML Input-Typen Beispiele</h1>
+
+    <form>
+      <!-- Button -->
+      <div class="input-group">
+        <label for="btn">Button:</label>
+        <input
+          type="button"
+          id="btn"
+          value="Klick mich"
+          onclick="alert('Button geklickt!')"
+        />
+      </div>
+
+      <!-- Checkbox -->
+      <div class="input-group">
+        <label for="check">Checkbox:</label>
+        <input type="checkbox" id="check" />
+      </div>
+
+      <!-- Color -->
+      <div class="input-group">
+        <label for="color">Farbe:</label>
+        <input type="color" id="color" value="#ff0000" />
+      </div>
+
+      <!-- Date -->
+      <div class="input-group">
+        <label for="date">Datum:</label>
+        <input type="date" id="date" />
+      </div>
+
+      <!-- Datetime-local -->
+      <div class="input-group">
+        <label for="datetime">Datum & Zeit:</label>
+        <input type="datetime-local" id="datetime" />
+      </div>
+
+      <!-- Email -->
+      <div class="input-group">
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" placeholder="name@beispiel.de" />
+      </div>
+
+      <!-- File -->
+      <div class="input-group">
+        <label for="file">Datei:</label>
+        <input type="file" id="file" />
+      </div>
+
+      <!-- Hidden -->
+      <div class="input-group">
+        <input type="hidden" id="hidden" value="geheimer_wert" />
+      </div>
+
+      <!-- Image -->
+      <div class="input-group">
+        <label for="image">Bild-Button:</label>
+        <input
+          type="image"
+          id="image"
+          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMzAiIGZpbGw9IiM0Y2FmNTAiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkFic2VuZGVuPC90ZXh0Pjwvc3ZnPg=="
+          alt="Senden"
+          width="100"
+          height="30"
+        />
+      </div>
+
+      <!-- Month -->
+      <div class="input-group">
+        <label for="month">Monat:</label>
+        <input type="month" id="month" />
+      </div>
+
+      <!-- Number -->
+      <div class="input-group">
+        <label for="number">Zahl:</label>
+        <input type="number" id="number" min="1" max="100" value="50" />
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <label for="pwd">Passwort:</label>
+        <input type="password" id="pwd" placeholder="Passwort" />
+      </div>
+
+      <!-- Radio -->
+      <div class="input-group">
+        <label>Radio:</label>
+        <input type="radio" id="radio1" name="gruppe" value="1" />
+        <label for="radio1">Option 1</label>
+        <input type="radio" id="radio2" name="gruppe" value="2" />
+        <label for="radio2">Option 2</label>
+      </div>
+
+      <!-- Range -->
+      <div class="input-group">
+        <label for="range">Range:</label>
+        <input type="range" id="range" min="0" max="100" value="50" />
+      </div>
+
+      <!-- Reset -->
+      <div class="input-group">
+        <label for="reset">Reset:</label>
+        <input type="reset" id="reset" value="Formular zurücksetzen" />
+      </div>
+
+      <!-- Search -->
+      <div class="input-group">
+        <label for="search">Suche:</label>
+        <input type="search" id="search" placeholder="Suchen..." />
+      </div>
+
+      <!-- Submit -->
+      <div class="input-group">
+        <label for="submit">Submit:</label>
+        <input type="submit" id="submit" value="Absenden" />
+      </div>
+
+      <!-- Tel -->
+      <div class="input-group">
+        <label for="tel">Telefon:</label>
+        <input type="tel" id="tel" placeholder="+49 123 456789" />
+      </div>
+
+      <!-- Text -->
+      <div class="input-group">
+        <label for="text">Text:</label>
+        <input type="text" id="text" placeholder="Normaler Text" />
+      </div>
+
+      <!-- Time -->
+      <div class="input-group">
+        <label for="time">Zeit:</label>
+        <input type="time" id="time" />
+      </div>
+
+      <!-- URL -->
+      <div class="input-group">
+        <label for="url">URL:</label>
+        <input type="url" id="url" placeholder="https://beispiel.de" />
+      </div>
+
+      <!-- Week -->
+      <div class="input-group">
+        <label for="week">Woche:</label>
+        <input type="week" id="week" />
+      </div>
+    </form>
+
+    <script>
+      // Einfache Validierung für bestimmte Felder
+      document.getElementById("email").addEventListener("change", function () {
+        if (!this.value.includes("@")) {
+          alert("Bitte gültige E-Mail eingeben");
+        }
+      });
+
+      // Range Wert anzeigen
+      document.getElementById("range").addEventListener("input", function () {
+        console.log("Range Wert:", this.value);
+      });
+    </script>
+  </body>
+</html>
