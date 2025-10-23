@@ -23,7 +23,7 @@
       <p>Everything seems to be ok :)</p>
     </div>
 
-    <form id="demo-form" data-parsley-validate="">
+    <form id="demo-form" data-parsley-validate="" enctype="multipart/form-data">
       <label for="fullname">Full Name * :</label>
       <input type="text" class="form-control" name="fullname" required="" />
 
@@ -34,6 +34,19 @@
         name="email"
         data-parsley-trigger="change"
         required=""
+      />
+
+      <!-- Neues Dateiauswahlfeld für JPG-Dateien -->
+      <label for="image">Bild auswählen (JPG, max. 2MB):</label>
+      <input
+        type="file"
+        class="form-control"
+        name="image"
+        id="image"
+        accept=".jpg,.jpeg"
+        data-parsley-filemaxmegabytes="2"
+        data-parsley-fileextension="jpg,jpeg"
+        data-parsley-trigger="change"
       />
 
       <label for="contactMethod">Preferred Contact Method *:</label>
@@ -130,6 +143,49 @@
     </form>
 
     <script type="text/javascript">
+      // Parsley Custom Validator für Dateigröße
+      window.Parsley.addValidator("filemaxmegabytes", {
+        validateString: function (_value, maxMegabytes, parsleyInstance) {
+          if (!window.FormData) {
+            return true;
+          }
+          var files = parsleyInstance.$element[0].files;
+          if (files.length == 0) {
+            return true; // Keine Datei ausgewählt ist ok
+          }
+          return files[0].size <= maxMegabytes * 1024 * 1024;
+        },
+        requirementType: "integer",
+        messages: {
+          en: "Die Datei ist zu groß (max. %s MB)",
+          de: "The file is too big (max. %s MB)",
+        },
+      });
+
+      // Parsley Custom Validator für Dateierweiterung
+      window.Parsley.addValidator("fileextension", {
+        validateString: function (_value, allowedExtensions, parsleyInstance) {
+          if (!window.FormData) {
+            return true;
+          }
+          var files = parsleyInstance.$element[0].files;
+          if (files.length == 0) {
+            return true; // Keine Datei ausgewählt ist ok
+          }
+          var fileName = files[0].name;
+          var extension = fileName.split(".").pop().toLowerCase();
+          var allowed = allowedExtensions.split(",").map(function (ext) {
+            return ext.trim().toLowerCase();
+          });
+          return allowed.indexOf(extension) !== -1;
+        },
+        requirementType: "string",
+        messages: {
+          en: "Diese Dateierweiterung ist nicht erlaubt",
+          de: "This file extension is not allowed",
+        },
+      });
+
       $(function () {
         $("#demo-form")
           .parsley()
